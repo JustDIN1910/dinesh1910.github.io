@@ -542,21 +542,25 @@ Creating a Health Care Interactive Dashboard in Power BI can offer valuable insi
         </section>
         <h4 style="color: white;">The address provided is approximate and not accurate.</h4>
 
-        <section class="contact-form">
-          <h3 class="h3 form-title">Contact Form</h3>
-        
-          <form action="send_email.php" method="POST" class="form" data-form>
-            <div class="input-wrapper">
-              <input type="text" name="fullname" class="form-input" placeholder="Full name" required data-form-input>
-              <input type="email" name="email" class="form-input" placeholder="Enter your Email ID" required data-form-input oninput="this.value = this.value.toLowerCase();">
-            </div>
-            <textarea name="message" class="form-input" placeholder="Your Message" required data-form-input></textarea>
-            <button class="form-btn" type="submit" data-form-btn>
-              <ion-icon name="paper-plane"></ion-icon>
-              <span>Send Message</span>
-            </button>
-          </form>
-        </section>
+              <section class="contact-form">
+                <h3 class="h3 form-title">Contact Form</h3>
+                <form action="mailto:dineshravi1910@gmail.com" method="POST" enctype="text/plain" class="form">
+                  <div class="input-wrapper">
+                    <input type="text" name="fullname" class="form-input" placeholder="Full name" required>
+                    <input type="email" name="email" class="form-input" placeholder="Enter your Email ID" required oninput="this.value = this.value.toLowerCase();">
+                    <textarea name="message" class="form-input" placeholder="Your Message" required></textarea>
+                    </div>
+                  
+                  <button class="form-btn" type="submit">
+                    <ion-icon name="paper-plane"></ion-icon>
+                    <span>Send Message</span>
+                    </button>
+                  </form>
+                </section>
+              
+
+
+
       </article>
     </div>
   </main>
