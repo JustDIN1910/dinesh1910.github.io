@@ -1,33 +1,40 @@
 <?php
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-  $to = "dineshravi1910@gmail.com";
-  $subject = "New Message from Portfolio Contact Form";
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    // Retrieve form data
+    $fullname = htmlspecialchars($_POST['fullname']);
+    $email = filter_var($_POST['email'], FILTER_VALIDATE_EMAIL);
+    $message = htmlspecialchars($_POST['message']);
 
-  // Sanitize input
-  $fullname = htmlspecialchars(trim($_POST["fullname"]));
-  $email = htmlspecialchars(trim($_POST["email"]));
-  $message = htmlspecialchars(trim($_POST["message"]));
+    // Validate email
+    if (!$email) {
+        echo "Invalid email address.";
+        exit;
+    }
 
-  // Validate email for lowercase only
-  if ($email !== strtolower($email)) {
-    echo "Error: Email should be in lowercase.";
-    exit;
-  }
+    // Email configuration
+    $to = 'dineshravi1910@gmail.com';
+    $subject = "New Contact Form Submission";
+    $headers = "From: $email\r\n";
+    $headers .= "Reply-To: $email\r\n";
+    $headers .= "Content-Type: text/plain; charset=UTF-8\r\n";
 
-  // Email content
-  $body = "Name: $fullname\nEmail: $email\nMessage:\n$message";
+    // Message content
+    $emailMessage = "You have received a new message from the contact form:\n\n";
+    $emailMessage .= "Full Name: $fullname\n";
+    $emailMessage .= "Email: $email\n\n";
+    $emailMessage .= "Message:\n$message\n";
 
-  // Headers
-  $headers = "From: $email";
-
-  // Attempt to send the email
-  if (mail($to, $subject, $body, $headers)) {
-    echo "Message sent successfully!";
-  } else {
-    echo "Failed to send message. Please try again later.";
-  }
+    // Send the email
+    if (mail($to, $subject, $emailMessage, $headers)) {
+        echo "Message sent successfully!";
+    } else {
+        echo "Failed to send the message. Please try again later.";
+    }
+} else {
+    echo "Invalid request method.";
 }
 ?>
+
 .download-button {
   display: inline-block;
   margin-top: 10px;
