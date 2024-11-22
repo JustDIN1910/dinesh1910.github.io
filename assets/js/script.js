@@ -157,3 +157,22 @@ for (let i = 0; i < navigationLinks.length; i++) {
 
   });
 }
+// Apply a ripple effect
+document.querySelectorAll('.download-button').forEach(button => {
+  button.addEventListener('click', function (e) {
+    // Create a ripple element
+    const ripple = document.createElement('span');
+    const rect = this.getBoundingClientRect();
+    ripple.style.left = `${e.clientX - rect.left}px`;
+    ripple.style.top = `${e.clientY - rect.top}px`;
+    ripple.classList.add('ripple');
+
+    // Append the ripple to the button
+    this.appendChild(ripple);
+
+    // Remove the ripple after animation ends
+    setTimeout(() => {
+      ripple.remove();
+    }, 600);
+  });
+});
